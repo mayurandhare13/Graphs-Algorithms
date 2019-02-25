@@ -24,13 +24,13 @@ public class Acyclicity
         visited[src] = true;
         recursArr[src] = true;
 
-        for(int child : adjList[src])
+        for(int v : adjList[src])
         {
-            if(!visited[child])
-                if(acyclicUtil(adjList, child, visited, recursArr))
+            if(!visited[v])
+                if(acyclicUtil(adjList, v, visited, recursArr))
                     return true;
             
-            else if(recursArr[child])
+            if(recursArr[v])
                 return true;
         }
         recursArr[src] = false;
