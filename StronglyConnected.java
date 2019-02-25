@@ -1,4 +1,5 @@
 // find number of Strongly Connected Component in graph
+// SINK in reverse graph is SOURCE in origin graph.
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,17 +8,17 @@ import java.util.Stack;
 
 public class StronglyConnected 
 {
-    private static void dfs(ArrayList<Integer>[] adjRev, int src, boolean[] visited, Stack<Integer> post)
+    private static void dfs(ArrayList<Integer>[] adj, int src, boolean[] visited, Stack<Integer> post)
     {
         visited[src] = true;
-        for(int v : adjRev[src])
+        for(int v : adj[src])
         {
             if(!visited[v])
-                dfs(adjRev, v, visited, post);
+                dfs(adj, v, visited, post);
         }
 
         if(post != null)
-            post.push(src);
+            post.push(src); // will push source at the end, which is sink in original -> this we actually wants
     }
 
     private static ArrayList<Integer>[] graphReverse(ArrayList<Integer>[] adj)
